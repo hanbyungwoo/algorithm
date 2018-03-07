@@ -1,0 +1,43 @@
+package dp;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class A1890 {
+	public static void main(String args[]) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		
+		int n = Integer.parseInt(st.nextToken());
+		
+		int arr[][] = new int [n+1][n+1];
+		long d[][] = new long [n+1][n+1];
+		
+		for(int i=1; i<=n; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			for(int j=1; j<=n; j++) {
+				arr[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		d[1][1] = 1;
+		for(int i=1; i<=n; i++) {
+			for(int j=1; j<=n; j++) {
+				if(arr[i][j] == 0) continue;
+				
+				if(i+arr[i][j] <= n) {
+					d[i+arr[i][j]][j] += d[i][j];
+				}
+				
+				if(j+arr[i][j] <= n) {
+					d[i][j+arr[i][j]] += d[i][j];
+				}
+				
+				
+			}
+		}
+		
+		System.out.println(d[n][n]);
+	}
+}

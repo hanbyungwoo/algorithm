@@ -43,20 +43,20 @@ public class A2143 {
 		int l=0, r=0;
 		int SizeA = listA.size();
 		int SizeB = listB.size();
-		int ans=0;
+		long ans=0;
 		// listA는 앞에서 부터
 		// listB는 뒤에서 부터 숫자를 차례대로 봐줍니다.
 		while(l<SizeA && r<SizeB) {
 			if(listA.get(l) + listB.get(r) == value) {
-				int ll=1;
-				int rr=1;
+				long ll=1;
+				long rr=1;
 				l++;
 				r++;
-				while(l<SizeA && listA.get(l) == listA.get(l-1)) {
+				while(l<SizeA && listA.get(l).equals(listA.get(l-1)) ) {
 					ll++;
 					l++;
 				}
-				while(r<SizeB && listB.get(r) == listB.get(r-1)) {
+				while(r<SizeB && listB.get(r).equals(listB.get(r-1)) ) {
 					rr++;
 					r++;
 				}
@@ -72,11 +72,9 @@ public class A2143 {
 	// 인접한 배열의 숫자들을 다 더해서 ArrayList에 넣어줍니다.
 	public static ArrayList<Long> Sum(ArrayList<Long> list, long arr[], int size) {
 		for(int i=0; i<size; i++) {
+			long sum=0;
 			for(int j=i; j<size; j++) {
-				long sum=0;
-				for(int k=i; k<=j; k++) {
-					sum += arr[k];
-				}
+				sum += arr[j];
 				list.add(sum);
 			}
 		}

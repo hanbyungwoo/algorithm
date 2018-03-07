@@ -39,11 +39,11 @@ public class A1208 {
 				long l1=1, r1=1;
 				l++;
 				r++;
-				while(l<list.size() && list.get(l) == list.get(l-1)) {
+				while(l<list.size() && list.get(l).equals(list.get(l-1)) ) {
 					l1++;
 					l++;
 				}
-				while(r<list2.size() && list2.get(r) == list2.get(r-1)) {
+				while(r<list2.size() && list2.get(r).equals(list2.get(r-1)) ) {
 					r1++;
 					r++;
 				}
