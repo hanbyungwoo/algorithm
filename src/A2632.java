@@ -26,7 +26,7 @@ public class A2632 {
 		for(int i=0; i<b; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			b_pizza[i] = Integer.parseInt(st.nextToken());
-		}.a.
+		}
 		
 		int a_total[] = new int[(1<<a)];
 		int temp = 0;
