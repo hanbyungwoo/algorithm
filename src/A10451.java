@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 //https://www.acmicpc.net/problem/10451
@@ -36,6 +38,7 @@ public class A10451 {
 	static ArrayList<Integer>[] a;
 	static boolean[] c;
 	static int cnt;
+	static Queue<Integer> q;
 	
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
@@ -44,6 +47,8 @@ public class A10451 {
 			cnt = 0;
 			int num = sc.nextInt();
 			a=(ArrayList<Integer>[]) new ArrayList[num+1];
+			q= new LinkedList<Integer>();
+			
 			for(int j=1; j<=num; j++) {
 				a[j] = new ArrayList<Integer>();
 			}
@@ -54,10 +59,30 @@ public class A10451 {
 			
 			c = new boolean[num+1];
 			for(int j=1; j<=num; j++) {
-				dfs(j);
+//				dfs(j);
+				if(!c[j]) {
+					bfs(j);
+					cnt++;
+				}
 			}
 			System.out.println(cnt);
 		}
+	}
+	
+	public static void bfs(int x) {
+		int temp;
+		q.add(x);
+		while(!q.isEmpty()) {
+			temp = q.poll();
+			c[temp] = true;
+			for(int y: a[temp]) {
+				if(c[y]==false) {
+					q.add(y);
+				}
+			}
+			
+		}
+		
 	}
 	
 	public static void dfs(int x) { 

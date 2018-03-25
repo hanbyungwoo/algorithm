@@ -18,86 +18,92 @@ public class A2146 {
 		StringTokenizer st;
 		
 		int map[][] = new int [num+1][num+1];
+		int group[][] = new int [num+1][num+1];
 		boolean mapCheck[][] = new boolean[num+1][num+1];
 		int check[][] = new int [num+1][num+1];
-		Queue<Point> q1 = new LinkedList<Point>();
-		Queue<Point> q2 = new LinkedList<Point>();
+		Queue<Point> q = new LinkedList<Point>();
 		
+		// 맵 저장
 		for(int i=1; i<=num; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			for(int j=1; j<=num; j++) {
-				
 				int temp = Integer.parseInt(st.nextToken());
 				map[i][j] = temp;
-				if(temp == 0) {
-					check[i][j] = -1;
-				} else {
-					check[i][j] = 0;
-					q2.add(new Point(i, j));
-				}
 			}
 		}
-		//////////////
-		int cnt = 0;
+		
+		int cnt=0;
+		// 그룹을 하기 위한 작업
 		for(int i=1; i<=num; i++) {
 			for(int j=1; j<=num; j++) {
-				if(map[i][j] == 1 && mapCheck[i][j] == false) {
-					cnt++;
-					
-					q1.add(new Point(i, j));
-				}
-				while(!q1.isEmpty()) {
-					int x1 = q1.peek().x;
-					int x2 = q1.peek().y;
-					q1.remove();
-					for(int k=0; k<4; k++) {
-						int tempX1 = x1 + up[k];
-						int tempX2 = x2 + down[k];
-						if( tempX1 > 0 && tempX1 <= num && tempX2 > 0 && tempX2 <= num) {
-							if(mapCheck[tempX1][tempX2] == false && map[tempX1][tempX2] == 1) {
-								map[tempX1][tempX2] = cnt;
-								q1.add(new Point(tempX1, tempX2));
+				if(map[i][j]==1&&group[i][j]==0) {
+					Queue<Point> tempQ = new LinkedList<Point>();
+					group[i][j] = ++cnt;
+					tempQ.add(new Point(i, j));
+					while(!tempQ.isEmpty()) {
+						int x = tempQ.peek().x;
+						int y = tempQ.peek().y;
+						tempQ.poll();
+						for(int k=0; k<4; k++) {
+							int tempX = x+up[k];
+							int tempY = y+down[k];
+							if(tempX>0 && tempY>0 && tempX<=num && tempY<=num) {
+								if(map[tempX][tempY]==1 && group[tempX][tempY]==0) {
+									group[tempX][tempY] = cnt;
+									tempQ.add(new Point(tempX, tempY));
+								}
 							}
-							mapCheck[tempX1][tempX2] = true;
 						}
 					}
 				}
 			}
 		}
 		
-		while(!q2.isEmpty()) {
-			int tempX = q2.peek().x;
-			int tempY = q2.peek().y;
-			q2.remove();
+		for(int i=1; i<=num; i++){
+			for(int j=1; j<=num; j++) {
+				if(map[i][j]==1) {
+					map[i][j] = 0;
+					q.add(new Point(i, j));
+				} else {
+					map[i][j] = -1;
+				}
+			}
+		}
+
+		while(!q.isEmpty()) {
+			int x = q.peek().x;
+			int y = q.peek().y;
+			q.poll();
 			for(int i=0; i<4; i++) {
-				int temp1 = tempX + up[i];
-				int temp2 = tempY + down[i];
-				if(temp1 > 0 && temp2 > 0 && temp1 <= num && temp2 <= num) {
-					if(check[temp1][temp2] == -1) {
-						map[temp1][temp2] = map[tempX][tempY];
-						check[temp1][temp2] = check[tempX][tempY] + 1;
-						q2.add(new Point(temp1, temp2));
+				int tempX = x+up[i];
+				int tempY = y+down[i];
+				if(tempX > 0 && tempY > 0 && tempX <=num && tempY <= num) {
+					if(map[tempX][tempY]==-1) {
+						map[tempX][tempY] = map[x][y]+1;
+						group[tempX][tempY] = group[x][y];
+						q.add(new Point(tempX, tempY));
 					}
 				}
 			}
 		}
-		int rst=0;
+		int ans=-1;
 		for(int i=1; i<=num; i++) {
 			for(int j=1; j<=num; j++) {
 				
 				for(int k=0; k<4; k++) {
-					int tempX = i + up[k];
-					int tempY = j + down[k];
-					if(tempX > 0 && tempY > 0 && tempX <= num && tempY <= num) {
-						if(map[i][j] != map[tempX][tempY] || rst==0) {
-							if(rst > check[i][j] + check[tempX][tempY] ) {
-								rst = check[i][j] + check[tempX][tempY];
+					int x = i + up[k];
+					int y = j + down[k];
+					if(x>0 && y>0 && x<=num && y<=num) {
+						if(group[i][j] != group[x][y]) {
+							if(ans == -1 || ans > map[i][j]+map[x][y]) {
+								ans = map[i][j]+map[x][y];
 							}
 						}
 					}
 				}
+				
 			}
 		}
-		System.out.println(rst);
+		System.out.println(ans);
 	}
 }

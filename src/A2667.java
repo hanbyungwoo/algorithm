@@ -1,8 +1,11 @@
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 
 // https://www.acmicpc.net/problem/2667
 
@@ -12,6 +15,8 @@ public class A2667 {
 	static ArrayList<Integer> home;
 	static int cnt;
 	static int num;
+	static int[] up = {0,0,-1,1};
+	static int[] down = {1,-1,0,0};
 	
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,22 +35,58 @@ public class A2667 {
 			}
 		}
 		
-		// dfs
-		int step = 0;	// Áý ÅëÂ° °¹¼ö
+		int step = 0;
+		Queue<Point> q = new LinkedList<Point>();
 		
 		for(int i=1; i<=num; i++) {
 			for(int j=1; j<=num; j++) {
-				cnt = 0;	// Áý ³¹°³ °¹¼ö
-				if(c[i][j] == false && a[i][j] == 1) {
+				if(c[i][j]==false && a[i][j]==1) {
+					q.add(new Point(i,j));
+					c[i][j] = true;
 					cnt++;
-					dfs(i, j);
-					step++;
-				}
-				if(cnt != 0) {
+					while(!q.isEmpty()) {
+						int x=q.peek().x;
+						int y=q.peek().y;
+						q.poll();
+						for(int k=0; k<4; k++) {
+							int tempx = x+up[k];
+							int tempy = y+down[k];
+							if(tempx > 0 && tempy > 0 && tempx <= num && tempy <= num) {
+								if(c[tempx][tempy]==false && a[tempx][tempy]==1) {
+									q.add(new Point(tempx, tempy));
+									c[tempx][tempy] = true;
+									cnt++;
+								}
+							}
+						}
+					}
 					home.add(cnt);
+					cnt=0;
+					step++;
+				} else {
+					c[i][j] = true;
 				}
+				
 			}
 		}
+		
+		
+		// dfs
+//		int step = 0;	// Áý ÅëÂ° °¹¼ö
+//		
+//		for(int i=1; i<=num; i++) {
+//			for(int j=1; j<=num; j++) {
+//				cnt = 0;	// Áý ³¹°³ °¹¼ö
+//				if(c[i][j] == false && a[i][j] == 1) {
+//					cnt++;
+//					dfs(i, j);
+//					step++;
+//				}
+//				if(cnt != 0) {
+//					home.add(cnt);
+//				}
+//			}
+//		}
 		System.out.println(step);
 		Collections.sort(home);
 		for(int i=0; i<home.size(); i++) {

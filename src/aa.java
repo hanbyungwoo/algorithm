@@ -1,98 +1,50 @@
-import java.io.*;
 import java.util.*;
 
 public class aa {
-    public static void main(String[] args) throws Exception {
-        InputStream inputStream = System.in;
-        OutputStream outputStream = System.out;
-        InputReader in = new InputReader(inputStream);
-        PrintWriter out = new PrintWriter(outputStream);
-
-        ALGO solver = new ALGO();
-        solver.solve(1, in, out);
-
-        //while (solver.solve(1, in, out)) {
-/*
-        int T = in.nextInt();
-        for (int i = 0; i < T; i++) {
-            solver.solve(1, in, out);
+    public static void dfs(ArrayList<Integer>[] a, int[] color, int x, int c) {
+        color[x] = c;
+        for (int y : a[x]) {
+            if (color[y] == 0) {
+                dfs(a, color, y, 4-c);
+            }
         }
-*/
-        out.close();
     }
-}
-class ALGO {
-    public void solve(int testNumber, InputReader in, PrintWriter out) {
-        int V = in.nextInt();
-        int E = in.nextInt();
-        int S = in.nextInt() - 1;
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for (int i = 0; i < V; i++) adj.add(new ArrayList<Integer>());
-        for (int i = 0; i < E; i++) {
-            int u = in.nextInt() - 1;
-            int v = in.nextInt() - 1;
-            int w = in.nextInt();
-            adj.get(u).add(v * 11 + w);
-        }
-        int[] d = new int[V];
-        int MAX_VAL = (int) 1e9;
-        Arrays.fill(d, MAX_VAL);
-        d[S] = 0;
-        int qx = 1;
-        int[] qv = new int[2 * E];
-        int[] qd = new int[2 * E];
-        qv[0] = S;
-        qd[0] = 0;
-        for (int i = 0; i < qx; i++) {
-            int v = qv[i];
-            int vd = qd[i];
-            if (vd != d[v]) continue;
-            for (int a: adj.get(v)) {
-                int av = a / 11;
-                int aw = a % 11;
-                if (vd + aw < d[av]) {
-                    d[av] = vd + aw;
-                    qv[qx] = av;
-                    qd[qx] = d[av];
-                    qx++;
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            ArrayList<Integer>[] a = (ArrayList<Integer>[]) new ArrayList[n+1];
+            for (int i=1; i<=n; i++) {
+                a[i] = new ArrayList<Integer>();
+            }
+            for (int i=0; i<m; i++) {
+                int u = sc.nextInt();
+                int v = sc.nextInt();
+                a[u].add(v);
+                a[v].add(u);
+            }
+            int[] color = new int[n+1];
+            boolean ok = true;
+            for (int i=1; i<=n; i++) {
+                if (color[i] == 0) {
+                    dfs(a, color, i, 1);
                 }
             }
-        }
-        for (int i = 0; i < V; i++) {
-            out.println(d[i] == MAX_VAL ? "INF" : d[i]);
-        }
-    }
-}
-
-class InputReader {
-    public BufferedReader reader;
-    public StringTokenizer tokenizer;
-
-    public InputReader(InputStream stream) {
-        reader = new BufferedReader(new InputStreamReader(stream));
-        tokenizer = null;
-    }
-
-    public String next() {
-        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-            try {
-                tokenizer = new StringTokenizer(reader.readLine());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            for (int i=1; i<=n; i++) {
+                for (int j : a[i]) {
+                    if (color[i] == color[j]) {
+                        ok = false;
+                    }
+                }
+            }
+            if (ok) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
             }
         }
-        return tokenizer.nextToken();
-    }
 
-    public int nextInt() {
-        return Integer.parseInt(next());
-    }
-
-    public long nextLong() {
-        return Long.parseLong(next());
-    }
-
-    public double nextDouble() {
-        return Double.parseDouble(next());
     }
 }
