@@ -19,6 +19,11 @@ public class P1_2 {
         int[] score = new int[3];
         String[] num = dartResult.split("[SDT](\\#)?(\\*)?");
 //        String[] num = dartResult.split("\\D+");
+//        for(int i=0; i<num.length; i++) {
+//        	System.out.print(num[i] + "-");
+//        }
+//        System.out.println();
+        
 //        if (!/^[a-zA-Z0-9]{10,15}$/.test(password)) {
 //            alert("패스워드는 숫자와 영문자 조합으로 10~15자리를 사용해야 합니다");
 //            return false;
@@ -28,7 +33,12 @@ public class P1_2 {
 //            return false;
 //        }
         String[] operator = dartResult.split("\\d+");
-
+        
+//        for(int i=0; i<operator.length; i++) {
+//        	System.out.print(operator[i] + "-");
+//        }
+//        System.out.println();
+        
         for (int i = 0; i < 3; i++) {
 
             char op1 = operator[i + 1].charAt(0);
