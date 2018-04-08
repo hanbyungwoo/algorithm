@@ -14,6 +14,8 @@ import java.util.StringTokenizer;
 //100
 //1
 
+// 해당 부분 참곤
+//(39 / 13) mod 5 != (39 mod 5) / (13 mod 5)
 public class L4 {
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
