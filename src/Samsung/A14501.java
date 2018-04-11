@@ -34,7 +34,14 @@ public class A14501 {
 			cost[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		
+//		int max = 0;
+//		for (int i = 2; i <= n; i++) {
+//			for (int j = 1; j < i; j++) {
+//				if (i - j >= day[j]) {
+//					dp[i] = Math.max(pay[i] + dp[j], dp[i]);
+//				}
+//			}
+//		}
 		for(int i=1; i<=N; i++) {
 			if(visit[i] == false) {
 				dfs(i, 0);
