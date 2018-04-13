@@ -46,13 +46,15 @@ public class A12100 {
 		}
 			
 		int copymap[][] = new int[n][n];
-		copy(copymap, map);
 		
+		copy(copymap, map);
 		for(int i=0; i<4; i++) {
+			
 			merge(i);
 			dfs(index+1);
-			copy(map, copymap);
+			
 		}
+		copy(map, copymap);
 		
 	}
 	public static void copy(int [][] map1, int [][] map2) {

@@ -93,6 +93,7 @@ public class Dictionary {
 		}
 		
 		Collections.reverse(order.subList(0, order.size()));
+//		Collections.reverse(order);
 		
 		
 		// DAG가 아니라면 역방향으로 간선이 있으므로 해당 조건 체크해주는 부분.
