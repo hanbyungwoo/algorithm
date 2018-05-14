@@ -19,8 +19,9 @@ import java.util.StringTokenizer;
 //10 4 12
 
 // Ãâ·Â
-//100
-//1
+//55
+//3 4
+//8 5
 
 public class L5 {
 	public static void main(String args[]) throws IOException {

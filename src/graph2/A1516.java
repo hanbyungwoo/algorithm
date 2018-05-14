@@ -20,13 +20,13 @@ public class A1516 {
 		int num = Integer.parseInt(st.nextToken());
 		
 		// 위상에 대한 정리
-		List<Integer>[] list = (List<Integer>[]) new List[num+1];
+//		List<Integer>[] list = (List<Integer>[]) new List[num+1];
 		
 		// n번 edge에 연결된 숫자들
 		List<Integer>[] val = (List<Integer>[]) new List[num+1];
 		
 		for(int i=1; i<=num; i++) {
-			list[i] = new ArrayList<Integer>();
+//			list[i] = new ArrayList<Integer>();
 			val[i] = new ArrayList<Integer>();
 		}
 		
@@ -46,7 +46,7 @@ public class A1516 {
 					time[j] = a;
 					j++;
 				} else {
-					list[i].add(a);
+//					list[i].add(a);
 					val[a].add(i);
 					ind[i]++;
 				}
@@ -57,27 +57,38 @@ public class A1516 {
 			if(ind[i]==0) {
 				q.add(i);
 			}
+			d[i] += time[i];
 		}
 		
 		while(!q.isEmpty()) {
 			int size = q.size();
-			int x = q.poll();
-			d[x] = time[x];
-			for(int i=0; i<size; i++) {
-				for(int y : val[x]) {
-					
-					ind[y]--;
-					
-					if(ind[y]==0) {
-						q.add(y);
-					}
-				}
-				for(int y : list[x]) {
-					if(d[x] < d[y] + time[x]) {
-						d[x] = d[y] + time[x];
-					}
+			int cur = q.poll();
+			for(int i=0; i<val[cur].size(); i++) {
+				int next = val[cur].get(i);
+				// 이전 점에서 미리 다음 next의 값을...저장하네..?!
+				d[next] = Math.max(d[next], d[cur]+time[next]);
+				if(--ind[next] == 0) {
+					q.add(next);
 				}
 			}
+			
+//			for(int i=0; i<size; i++) {
+//				int x = q.poll();
+//				for(int y : val[x]) {
+//					
+//					ind[y]--;
+//					
+//					if(ind[y]==0) {
+//						q.add(y);
+//					}
+//				}
+//				for(int y : list[x]) {
+////					if(d[x] < d[y] + time[x]) {
+////						d[x] = d[y] + time[x];
+////					}
+//					d[x] += time[y];
+//				}
+//			}
 		}
 		
 		for(int i=1; i<=num; i++) {

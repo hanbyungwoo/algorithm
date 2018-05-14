@@ -10,7 +10,7 @@ public class P3_5 {
 		solution(new String[]{"word","war","warrior","world"});
 		
 	}
-	
+	// 트라이 ~ 사용하기
 	public static void solution(String input[]) {
 		Arrays.sort(input);
 		int cnt=0;

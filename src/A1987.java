@@ -31,7 +31,7 @@ public class A1987 {
 		for(int i=0; i<row; i++) {
 			for(int j=0; j<col; j++) {
 				if(check[i][j]) {
-					dfs(i,j,cnt);
+//					dfs(i,j,cnt);
 					cnt++;
 				}
 			}
@@ -47,9 +47,9 @@ public class A1987 {
 		check[x][y] = true;
 		
 		if(s.contains(map[x][y])) {
-			dfs()
+//			dfs();
 		} else {
-			cnt++;
+//			cnt++;
 		}
 			
 		

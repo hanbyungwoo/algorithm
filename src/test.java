@@ -45,6 +45,8 @@ public class test {
 	}
 	
 	public static void main(String args[]) {
+		LinkedList1 a = new LinkedList1();
+		a.add(k, input);
 		Scanner sc = new Scanner(System.in);
 		// Á¤Á¡ÀÇ °¹¼ö
 		int point = sc.nextInt();

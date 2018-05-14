@@ -14,8 +14,10 @@ public class A14500 {
 	static int N, M;
 	static int dx[]={-1,1,0,0};
 	static int dy[]={0,0,1,-1};
-	static int sx[][] = { { 0,0,-1 },{ 0,-1,1 },{ 0,0,1 },{ 0,-1,1 } };
-	static int sy[][] = { { 1,2,1 },{ 1,0,0 },{ 1,2,1 },{ 1,1,1 } };
+//	static int sx[][] = { { 0,0,-1 },{ 0,-1,1 },{ 0,0,1 },{ 0,-1,1 } };
+//	static int sy[][] = { { 1,2,1 },{ 1,0,0 },{ 1,2,1 },{ 1,1,1 } };
+	static int sx[][] = { { 0,-1,0 },{ 0,1,0 },{ -1,0,1 },{ -1,0,1 } };
+	static int sy[][] = { { -1,0,1 },{ -1,0,1 },{ 0,1,0 },{ 0,-1,0 } };
 	public static void main(String args[]) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
