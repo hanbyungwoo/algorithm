@@ -1,46 +1,41 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
-	static ArrayList<Integer>[] list;
-	static boolean []c;
-	static int cnt;
-    @SuppressWarnings("unchecked")
+
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int t = Integer.parseInt(st.nextToken());
-		while(t-->0) {
-			st = new StringTokenizer(br.readLine(), " ");
-			int N = Integer.parseInt(st.nextToken());
-			int K = Integer.parseInt(st.nextToken());
-			int M = Integer.parseInt(st.nextToken());
-			
-			int sticker = K-M;
-			long temp = count(N)/(count(sticker)*count(N-sticker));
-			long temp2 = count(N)/(count(M)*count(N-M));
-			long value = temp*temp2%1003001;
-			
-			System.out.println(value);
-			
+		int a = Integer.parseInt(st.nextToken());
+		String b = Integer.toBinaryString(a);
+		
+		int max = 0;
+		for(int i=0; i<b.length(); i++) {
+			if(b.charAt(i) == '1') {
+				int cnt=0;
+				while(true) {
+					i++;
+					if(i==b.length()) {
+						cnt=0;
+						break;
+					} else if(b.charAt(i) == '1') {
+						i--;
+						break;
+					} else {
+						cnt++;
+					}
+				}
+				if(max < cnt) {
+					max = cnt;
+				}
+			}
 		}
-	}
-    
-    public static int count(int x) {
-    	if(x==0) {
-    		return 1;
-    	}
-    	for(int i=x-1; i>=1; i--) {
-    		x *= i;
-    		if(x>1003001) {
-    			x %= 1003001;
-    		}
-    	}
-    	return x;
+		
+		System.out.println(max);
+		
     }
 }
 

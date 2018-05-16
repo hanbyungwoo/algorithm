@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class A13265 {
+	static ArrayList<Integer>[] list;
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -20,7 +21,7 @@ public class A13265 {
 			int line = Integer.parseInt(st.nextToken());
 			int color[] = new int[circle+1];
 			
-			ArrayList<Integer>[] list = (ArrayList<Integer>[]) new ArrayList[circle+1];
+			list = (ArrayList<Integer>[]) new ArrayList[circle+1];
 			for(int i=0; i<=circle; i++) {
 				list[i] = new ArrayList<Integer>();
 			}
@@ -31,23 +32,27 @@ public class A13265 {
 				list[line1].add(line2);
 				list[line2].add(line1);
 			}
-			Queue<Integer> q = new LinkedList<Integer>();
-			if(circle > 1) {
-				q.add(1);
-				color[1] = 1;
-			} 
-			
-			while(!q.isEmpty()) {
-				int x = q.poll();
-				
-				for( int y : list[x] ) {
-					// 색이 아직 칠해지지 않은 경우
-					if(color[y] == 0) {
-						color[y] = 3-color[x];
-						q.add(y);
-					} 
+//			Queue<Integer> q = new LinkedList<Integer>();
+//			if(circle > 1) {
+//				q.add(1);
+//				color[1] = 1;
+//			} 
+			for(int i=1; i<=circle; i++) {
+				if(color[i]==0) {
+					dfs(color, i, 1);
 				}
 			}
+//			while(!q.isEmpty()) {
+//				int x = q.poll();
+				
+//				for( int y : list[x] ) {
+//					 색이 아직 칠해지지 않은 경우
+//					if(color[y] == 0) {
+//						color[y] = 3-color[x];
+//						q.add(y);
+//					} 
+//				}
+//			}
 			
 			boolean ok=true;
 			for(int i=1; i<=circle; i++) {
@@ -64,6 +69,15 @@ public class A13265 {
 				System.out.println("possible");	
 			} else {
 				System.out.println("impossible");
+			}
+		}
+	}
+	
+	public static void dfs(int[] color, int x, int c) {
+		color[x] = c;
+		for(int y : list[x]) {
+			if(color[y]==0) {
+				dfs(color, y, 4-c);
 			}
 		}
 	}
