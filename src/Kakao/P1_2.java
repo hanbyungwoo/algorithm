@@ -18,7 +18,7 @@ public class P1_2 {
 
         int[] score = new int[3];
         String[] num = dartResult.split("[SDT](\\#)?(\\*)?");
-//        String[] num = dartResult.split("\\D+");
+//        String[] num = dartResult.split("\\D+"); //점수만 남기자
 //        for(int i=0; i<num.length; i++) {
 //        	System.out.print(num[i] + "-");
 //        }

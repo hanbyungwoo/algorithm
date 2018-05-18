@@ -14,9 +14,9 @@ public class P3_2 {
 		}
 		
 		
-//		solution("TOBEORNOTTOBEORTOBEORNOT");
+		solution("TOBEORNOTTOBEORTOBEORNOT");
 //		solution("KAKAO");
-		solution("ABABABABABABABAB");
+//		solution("ABABABABABABABAB");
 	}
 	
 	
