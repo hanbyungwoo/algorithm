@@ -36,7 +36,7 @@ public class A2251 {
 				int []next = {cur[0], cur[1], cur[2]};
 				next[to[i]] += next[from[i]];
 				next[from[i]] = 0;
-				if(next[to[i]] > cup[to[i]]) {
+				if(next[to[i]] > cup[to[i]]) {	// 해당 컵의 용량 초과시
 					next[from[i]] = next[to[i]] - cup[to[i]];
 					next[to[i]] = cup[to[i]]; 
 				}
@@ -67,6 +67,8 @@ class Pair implements Comparable<Pair> {
 		this.first = first;
 		this.second = second;
 	}
+	
+	// 여기서는 compartTo가 꼭 필요한건 아니지만 그냥 써봄
 	
 	@Override
 	public int compareTo(Pair o) {

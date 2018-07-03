@@ -50,31 +50,36 @@ public class A3055 {
 		
 		q.add(new Point(tempX, tempY));
 		d[tempX][tempY] = 1;
+
 		while(!q.isEmpty()) {
-			int x = q.peek().x;
-			int y = q.peek().y;
-			q.poll();
-			for(int i=0; i<4; i++) {
-				int xx = x+up[i];
-				int yy = y+down[i];
-				if(xx > 0 && yy > 0 && xx <=one && yy <= two) {
-					// 물먼저 확장.
-					if(water[x][y] == 1 && map[xx][yy] != 'X' && water[xx][yy] == 0 && map[xx][yy] != 'D' ) {	// 해당 방향에 돌 없음
-						water[xx][yy] = 1;	// 물이 차오른다.
-						q.add(new Point(xx, yy));
+			int size = q.size();
+			for(int z=0; z<size; z++) {
+				int x = q.peek().x;
+				int y = q.peek().y;
+				q.poll();
+				
+				for(int i=0; i<4; i++) {
+					int xx = x+up[i];
+					int yy = y+down[i];
+					if(xx > 0 && yy > 0 && xx <=one && yy <= two) {
+						// 물먼저 확장.
+						if(water[x][y] == 1 && map[xx][yy] != 'X' && water[xx][yy] == 0 && map[xx][yy] != 'D' ) {	// 해당 방향에 돌 없음
+							water[xx][yy] = 1;	// 물이 차오른다.
+							q.add(new Point(xx, yy));
+						}
+						// 물확장 후 고슴도치 이동
+						if(d[xx][yy] <= d[x][y] +1 && map[x][y] == 'S' && water[xx][yy] != 1 && map[xx][yy] != 'X' && d[xx][yy] == 0) {	// 고슴도치 / 물없고 / 돌맹이 없고
+							
+							map[xx][yy] = 'S';
+							//map[x][y] = '.';
+							d[xx][yy] = d[x][y] + 1;
+							q.add(new Point(xx, yy));
+						}
 					}
-					// 물확장 후 고슴도치 이동
-					if(d[xx][yy] <= d[x][y] +1 && map[x][y] == 'S' && water[xx][yy] != 1 && map[xx][yy] != 'X' && d[xx][yy] == 0) {	// 고슴도치 / 물없고 / 돌맹이 없고
-						
-						map[xx][yy] = 'S';
-						//map[x][y] = '.';
-						d[xx][yy] = d[x][y] + 1;
-						q.add(new Point(xx, yy));
-					}
-				}
+				}				
 			}
-		}
-		
+			
+		}		
 		if(d[desX][desY] == 0) {
 			System.out.println("KAKTUS");
 		} else {

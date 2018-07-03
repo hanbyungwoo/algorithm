@@ -3,7 +3,7 @@ package woowahan;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class P5 {
+public class P1_5 {
 	public static void main(String args[]) {
 //		int [] arr={6,1,4,6,3,2,7,4};
 		int [] arr={2,1,1,3,2,1};

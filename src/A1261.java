@@ -2,6 +2,7 @@ import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -23,12 +24,13 @@ public class A1261 {
 		 // 2 4 
 		 int map[][] = new int[row+1][col+1];
 		 int map2[][] = new int[row+1][col+1];
-		 boolean check[][] = new boolean[row+1][col+1];
+//		 boolean check[][] = new boolean[row+1][col+1];
 		 
 		 for(int i=1; i<=row; i++) {
-			 for(int j=1; j<=col; j++) {
-				 map2[i][j] = -1;
-			 }
+			 Arrays.fill(map2[i], -1);
+//			 for(int j=1; j<=col; j++) {
+//				 map2[i][j] = -1;
+//			 }
 		 }
 		 
 		 for(int i=1; i<=row; i++) {

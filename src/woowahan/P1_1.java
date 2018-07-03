@@ -3,7 +3,7 @@ package woowahan;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class P1 {
+public class P1_1 {
 	public static void main(String args[]) {
 		
 		System.out.println(Solution("13 DUP 4 POP 5 DUP + DUP + -"));

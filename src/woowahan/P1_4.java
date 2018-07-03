@@ -3,7 +3,7 @@ package woowahan;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class P4 {
+public class P1_4 {
 	public static void main(String args[]) {
 		
 		System.out.println(Solution(1, 1, 2, 3));

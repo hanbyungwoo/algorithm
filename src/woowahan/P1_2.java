@@ -1,7 +1,7 @@
 package woowahan;
 
 
-public class P2 {
+public class P1_2 {
 	public static void main(String args[]) {
 		
 		System.out.println(Solution("A586QK", "JJ653K"));

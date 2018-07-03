@@ -1,3 +1,4 @@
+package woowahan;
 //select team_id, team_name, sum(bb) num_points from (
 //	
 //    
