@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class aa {
+public class BipartiteGraph {
     public static void dfs(ArrayList<Integer>[] a, int[] color, int x, int c) {
         color[x] = c;
         for (int y : a[x]) {

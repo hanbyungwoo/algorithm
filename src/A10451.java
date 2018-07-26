@@ -59,11 +59,11 @@ public class A10451 {
 			
 			c = new boolean[num+1];
 			for(int j=1; j<=num; j++) {
-//				dfs(j);
-				if(!c[j]) {
-					bfs(j);
-					cnt++;
-				}
+				dfs(j);
+//				if(!c[j]) {
+//					bfs(j);
+//					cnt++;
+//				}
 			}
 			System.out.println(cnt);
 		}

@@ -58,7 +58,7 @@ public class A2146 {
 				}
 			}
 		}
-		
+		// 맵 초기화
 		for(int i=1; i<=num; i++){
 			for(int j=1; j<=num; j++) {
 				if(map[i][j]==1) {
@@ -69,7 +69,7 @@ public class A2146 {
 				}
 			}
 		}
-
+		// 거리로 저장하기
 		while(!q.isEmpty()) {
 			int x = q.peek().x;
 			int y = q.peek().y;
@@ -86,6 +86,7 @@ public class A2146 {
 				}
 			}
 		}
+		// 최소 길이 구하기
 		int ans=-1;
 		for(int i=1; i<=num; i++) {
 			for(int j=1; j<=num; j++) {
