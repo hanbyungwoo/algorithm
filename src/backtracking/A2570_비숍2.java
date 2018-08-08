@@ -34,7 +34,7 @@ public class A2570_ºñ¼ó2 {
 			int y = Integer.parseInt(st.nextToken());
 			block[x-1][y-1] = true; 
 			map[x-1][y-1] = false;
-			check_dig1[x-1 + y-1] = false
+			check_dig1[x-1 + y-1] = false;
 		}
 		calc(0);
 		System.out.println(max);
