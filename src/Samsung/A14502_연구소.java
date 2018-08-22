@@ -70,11 +70,13 @@ public class A14502_연구소 {
 				if(tempmap[x][y] == 0) {
 					tempmap[x][y] = 1;
 					dfs(i, cnt+1);
+					tempmap[x][y] = 0;
 				}
 				
 			}
 		}
-		tempmap[val/M][val%M]=0;
+		// 이것도..ㅇㅇ
+//		tempmap[val/M][val%M]=0;
 		cnt--;
 	}
 	

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class A15684 {
+public class A15684_사다리조작 {
 	static int N, M, H;
 	static int map[][];
 	static int result = -1;

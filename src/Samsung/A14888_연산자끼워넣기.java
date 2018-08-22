@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class A14888 {
+public class A14888_연산자끼워넣기 {
 		
 	static int op[];
 	static int oper[];

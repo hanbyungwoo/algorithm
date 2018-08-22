@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class A14891 {
+public class A14891_Åé´Ï¹ÙÄû {
 	static char cir1[], cir2[], cir3[], cir4[];
 	static int ans;
 	public static void main(String args[]) throws IOException {

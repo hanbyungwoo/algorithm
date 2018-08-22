@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class A14503 {
+public class A14503_·Îº¿Ã»¼Ò±â {
 	static int N, M, cnt;
 	static int map[][], direction[][];
 	static int dx[] = {-1,0,1,0};	// ºÏ µ¿ ³² ¼­

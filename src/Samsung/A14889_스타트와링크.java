@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class A14889 {
+public class A14889_스타트와링크 {
 	static int N;
 	static int map[][];
 	static int ans=Integer.MAX_VALUE;
@@ -67,6 +67,8 @@ public class A14889 {
 				if(team[i] == false) {
 					team[i] = true;
 					dfs(len+1, i);
+//					이것도 ㅇㅇ..
+//					team[i] = false;
 				}
 			}
 			

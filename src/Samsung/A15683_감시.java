@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class A15683 {
+public class A15683_°¨½Ã {
 	static int N, M;
 	static int map[][];
 	static int ans = Integer.MAX_VALUE;

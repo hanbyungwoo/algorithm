@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class SW2383 {
+public class SW2477_차량정비소 {
 	static int recep[]; 
 	static int recepB[];
 	static int fixB[];
