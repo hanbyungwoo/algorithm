@@ -39,23 +39,15 @@ public class SW2382_미생물격리 {
 				list.add(new Home(x, y, cnt, dir-1));
 				// arraylist로 내림차순 먼저한 다음에
 				// map에 해당 인덱스 번호 저장?!
-				// 
 				
 			}
 			
-			
-			
 			for(int i=0; i<m; i++) {
-//				Collections.sort(list);
+				Collections.sort(list);
 				for(int[] x : map) {
 					Arrays.fill(x, -1);
 				}
-				Collections.sort(list);
-				for(int j=0; j<list.size(); j++) {
-					map[list.get(j).x][list.get(j).y] = j;
-				}
-				
-				for(int j=0; j<list.size(); j++) {
+ 				for(int j=0; j<list.size(); j++) {
 					
 					int x = list.get(j).x;
 					int y = list.get(j).y;
