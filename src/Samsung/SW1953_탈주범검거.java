@@ -9,6 +9,10 @@ package Samsung;
 //2 7 1 6 2 6 6 2 2
 //1 3 1 1 1 5 1 6 6
 
+// 내가 틀린 이유
+// 한 번 방문한 경우에는 visit을 true로 변경해서 재접근이 불가능하다.
+// 하지만 3이라는 시간 뒤에 다른 경로를 통하여
+// 5라는 시간에 해당 루트에 또 접근하는 경우가 발생할 수 있다.
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +23,7 @@ public class SW1953_탈주범검거 {
 	static int dx[] = {-1, 1, 0, 0};	// 상 하 좌 우
 	static int dy[] = {0, 0, -1, 1};
 	static int dCnt[];
-	static boolean isVisit[][];
+	static boolean isVisit[][], ret[][];
 	static int n, m, ans, r, c, l;
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,19 +41,20 @@ public class SW1953_탈주범검거 {
 			
 			map = new int[n][m];
 			isVisit = new boolean[n][m];
+			ret = new boolean[n][m];
 			for(int i=0; i<n; i++) {
 				st = new StringTokenizer(br.readLine(), " ");
 				for(int j=0; j<m; j++) {
 					map[i][j] = Integer.parseInt(st.nextToken());
 				}
 			}
-			isVisit[r][c] = true;
+			ret[r][c] = true;
 			dfs(r, c, 1);
 			
 			ans = 0;
 			for(int i=0; i<n; i++) {
 				for(int j=0; j<m; j++) {
-					if(isVisit[i][j]) {
+					if(ret[i][j]) {
 						ans++;
 					}
 				}
@@ -62,13 +67,6 @@ public class SW1953_탈주범검거 {
 	
 	public static void dfs(int x, int y, int time) {
 		if(time == l) {
-//			for(int i=0; i<n; i++) {
-//				for(int j=0; j<m; j++) {
-//					if(isVisit[i][j]) {
-//						ans++;
-//					}
-//				}
-//			}
 			return;
 		}
 		
@@ -116,35 +114,40 @@ public class SW1953_탈주범검거 {
 			return;
 		}
 		int temp = map[nx][ny];
+		isVisit[nx][ny] = true;
 		switch(dir) {
 		case 0 :
 			if(temp == 1 || temp == 2 || temp == 5 || temp == 6) {
-				isVisit[nx][ny] = true;
+				ret[nx][ny] = true;
+//				isVisit[nx][ny] = true;
 				dfs(nx, ny, time+1);
 			}
 			break;
 		case 1 :
 			if(temp == 1 || temp == 2 || temp == 4 || temp == 7) {
-				isVisit[nx][ny] = true;
+				ret[nx][ny] = true;
+//				isVisit[nx][ny] = true;
 				dfs(nx, ny, time+1);
 			}
 			break;
 		case 2 :
 			if(temp == 1 || temp == 3 || temp == 4 || temp == 5) {
-				isVisit[nx][ny] = true;
+				ret[nx][ny] = true;
+//				isVisit[nx][ny] = true;
 				dfs(nx, ny, time+1);
 			}
 			break;
 		case 3 :
 			if(temp == 1 || temp == 3 || temp == 6 || temp == 7) {
-				isVisit[nx][ny] = true;
+				ret[nx][ny] = true;
+//				isVisit[nx][ny] = true;
 				dfs(nx, ny, time+1);
 			}
 			break;
 		default :
 			break;
 		}
-		
+		isVisit[nx][ny] = false;
 	}
 }
 
