@@ -41,10 +41,12 @@ public class SW2383_점심식사시간 {
                     map[i][j] = Integer.parseInt(token.nextToken());
                     if (map[i][j] > 1) {
                         if (!flag) {
+                        	// A시간 만큼의 배열 길이 생성
                             AStair = new int[map[i][j]];
                             aRow = i; aCol = j;
                             flag = true;
                         } else {
+                        	// B시간 만큼의 배열 길이 생성
                             bRow = i; bCol = j;
                             BStair = new int[map[i][j]];
                         }

@@ -83,6 +83,7 @@ public class SW2115_벌꿀채취 {
 		}
 	}
 	
+	// check ( 1 : 1번 꿀통 / 2 : 2번 꿀통 )
 	public static void cal(int val[], int check) {
 //		System.out.println("1 : " + val1[0] + ", " + val1[1] + " 2 : " + val2[0] + ", " + val2[1]);
 		temp = new boolean [m];
@@ -99,6 +100,7 @@ public class SW2115_벌꿀채취 {
 		int mul=0;
 		int sum=0;
 		
+		// 모든 경우를 다 체크해주는중
 		for(int i=0; i<m; i++) {
 			if(temp[i]) {
 				sum += val[i];

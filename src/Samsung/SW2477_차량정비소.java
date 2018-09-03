@@ -28,10 +28,10 @@ public class SW2477_차량정비소 {
 			int per = Integer.parseInt(st.nextToken());
 			int find1 = Integer.parseInt(st.nextToken());
 			int find2 = Integer.parseInt(st.nextToken());
-			recep = new int [re+1];
-			recepB = new int[re+1];
-			fix = new int [fi+1];
-			fixB = new int[fi+1];
+			recep = new int [re+1];	// 접수창고 소요시간
+			recepB = new int[re+1];	// 접수창고 이용하는 사람 번호 저장
+			fix = new int [fi+1];	// 수리창고 소요시간		
+			fixB = new int[fi+1];	// 수리창고 이용하는 사람 번호 저장
 			info = new Infor[per+1];
 			oneQ = new LinkedList<Infor>();
 			twoQ = new LinkedList<Infor>();
@@ -137,7 +137,7 @@ public class SW2477_차량정비소 {
 			for(int i=1; i<recepB.length; i++) {
 				if(recepB[i]==0) {
 					in.arriveA = min;
-					in.A = i;
+					in.A = i;	// 접수창고번호
 					recepB[i] = in.seq;
 					break;
 				}
