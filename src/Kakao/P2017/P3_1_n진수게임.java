@@ -3,10 +3,11 @@ package Kakao.P2017;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class P3_1 {
+public class P3_1_n진수게임 {
 	public static void main (String args[] ) {
-		System.out.println(solution(2,4,2,1));
+//		System.out.println(solution(2,4,2,1));
 //		System.out.println(solution(16,16,2,1));
+		System.out.println(solution(16,16,2,2));
 	}
 	
 	
@@ -26,7 +27,7 @@ public class P3_1 {
 		}
 		String x ="";
 		
-		for(int i=p-1; t>0; i=p*m+i) {
+		for(int i=p-1; t>0; i+=m) {
 			x+=sb.toString().charAt(i);	
 			t--;
 		}

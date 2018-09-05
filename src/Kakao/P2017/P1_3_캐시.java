@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class P1_3 {
+public class P1_3_Ä³½Ã {
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int cacheSize = Integer.parseInt(br.readLine());
@@ -16,18 +16,25 @@ public class P1_3 {
 		int time = 0;
 		
 		for(int i=0; i<cities.length; i++) {
-			if(value.contains(cities[i])) {	// hit
-				value.remove(cities[i]);
-				value.add(cities[i]);
+			String city = cities[i].toUpperCase();
+			
+			if(cacheSize == 0) {
+				time = cities.length * 5;
+				break;
+			}
+			
+			if(value.contains(city)) {	// hit
+				value.remove(city);
+				value.add(city);
 				time += 1;
 			} else {	// miss
 				if(value.size() < cacheSize) {
-					value.add(cities[i]);
+					value.add(city);
 					time += 5;
 				}
 				else {
 					value.poll();
-					value.add(cities[i]);
+					value.add(city);
 					time += 5;
 				}
 			}

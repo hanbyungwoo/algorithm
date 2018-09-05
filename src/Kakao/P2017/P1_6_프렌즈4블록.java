@@ -1,6 +1,6 @@
 package Kakao.P2017;
 
-public class P1_6 {
+public class P1_6_«¡∑ª¡Ó4∫Ì∑œ {
 	public static void main (String args[] ) {
 		
 		int m=4, n=5;

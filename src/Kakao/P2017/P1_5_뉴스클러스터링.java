@@ -1,9 +1,8 @@
 package Kakao.P2017;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class P1_5 {
+public class P1_5_뉴스클러스터링 {
 	public static void main(String args[]) {
 		
 //		String str1 = "FRANCE";
@@ -14,6 +13,8 @@ public class P1_5 {
 //		String str2 = "shake hands";
 //		String str1 = "E=M*C^2";
 //		String str2 = "e=m*c^2";
+//		String str1 = "ss";
+//		String str2 = "*s*s";
 		
 		char st1[] = str1.toLowerCase().toCharArray();
 		char st2[] = str2.toLowerCase().toCharArray();
@@ -39,7 +40,8 @@ public class P1_5 {
 		// 합집합, 교집합을 구하자.
 		int kyo = 0;
 		int sum = 0;
-		if(s1.size() != 0 && s2.size() != 0) {
+		// 둘 중 하나라도 size가 0이면 kyo는 0임.
+		if(s1.size() != 0 || s2.size() != 0) {
 			for(int i=0; i<s1.size(); i++) {
 				for(int j=0; j<s2.size(); j++) {
 					if(s1.get(i).equals(s2.get(j))) {	// s1, s2 문자열 일치
@@ -53,6 +55,7 @@ public class P1_5 {
 					}
 				}
 			}
+			// s1, s2는 교집합은 이미 빠진 상태
 			sum = s1.size() + s2.size() + kyo;
 		}
 		

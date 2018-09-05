@@ -2,15 +2,17 @@ package Kakao.P2017;
 
 import java.util.ArrayList;
 
-public class P3_3 {
+public class P3_3_파일명정렬 {
 	public static void main (String args[] ) {
 		solution(new String[]{"img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"});
 		solution(new String[]{"F-5 Freedom Fighter", "B-50 Superfortress", "A-10 Thunderbolt II", "F-14 Tomcat"});
 	}
 	
 	
-	public static void solution(String input[]) {
+	public static String[] solution(String input[]) {
 		ArrayList<File> list = new ArrayList<File>();
+//		StringBuilder sb = new StringBuilder();
+		String[] answer = new String[input.length];
 		
 		for(int i=0; i<input.length; i++) {
 			int numStart=0;
@@ -33,6 +35,7 @@ public class P3_3 {
 			
 			list.add(new File(input[i].substring(0, numStart), input[i].substring(numStart, numEnd), input[i].substring(numEnd, input[i].length())));
 		}
+		int cnt=0;
 		// list에 파일 명 정리 후 비교 시작.
 		for(int i=0; i<list.size();) {
 			File temp = list.get(i);
@@ -49,10 +52,12 @@ public class P3_3 {
         		list.remove(min);
         	}
         	System.out.print("\""+ temp.toString()+ "\" ");
-        	
+//			answer[cnt++] = temp.toString();
+//        	sb.append("\""+temp.toString()+"\"");
 		}
+//		sb.append("\n");
 		System.out.println();
-		
+		return answer;
 	}
 }
 class File implements Comparable<File>{

@@ -1,9 +1,8 @@
 package Kakao.P2017;
 
-import java.util.LinkedList;
 import java.util.PriorityQueue;
 
-public class P1_4 {
+public class P1_4_셔틀버스 {
 	public static void main(String args[]) {
 		int n=1;
 		int t=1;
@@ -78,16 +77,16 @@ class Time implements Comparable<Time>{
 	
 	@Override
 	public int compareTo(Time o) {
-			if(this.h < o.h) {		// 대입한 시간이 더큼
-				return -1;
-			} else if(this.h > o.h) {	// 기존 시간이 더큼
-				return 1;
-			} else if(this.m < o.m) {	// 시간은 같고, 대입한 시간이 더큼
-				return -1;
-			} else if(this.m > o.m) {	// 시간은 같고, 기존 시간이 더큼
-				return 1;
-			} else {	// 시간, 분 모두 같은 경우
-				return 0;
-			}
+		if(this.h < o.h) {		// 대입한 시간이 더큼
+			return -1;
+		} else if(this.h > o.h) {	// 기존 시간이 더큼
+			return 1;
+		} else if(this.m < o.m) {	// 시간은 같고, 대입한 시간이 더큼
+			return -1;
+		} else if(this.m > o.m) {	// 시간은 같고, 기존 시간이 더큼
+			return 1;
+		} else {	// 시간, 분 모두 같은 경우
+			return 0;
+		}
 	}
 }
