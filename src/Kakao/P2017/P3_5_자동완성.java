@@ -2,7 +2,7 @@ package Kakao.P2017;
 
 import java.util.Arrays;
 
-public class P3_5 {
+public class P3_5_자동완성 {
 	static boolean isContain;
 	public static void main (String args[] ) {
 		solution(new String[]{"go","gone","guild"});

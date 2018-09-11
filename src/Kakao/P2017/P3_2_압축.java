@@ -1,17 +1,12 @@
 package Kakao.P2017;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class P3_2 {
+public class P3_2_압축 {
 	static HashMap<String, Integer> dic;
 	public static void main (String args[] ) {
-		dic = new HashMap<String, Integer>();
 		
-		char temp = 'A';
-		for(int i=1; i<=26; i++) {
-			dic.put(temp+"", i);
-			temp++;
-		}
 		
 		
 		solution("TOBEORNOTTOBEORTOBEORNOT");
@@ -20,7 +15,17 @@ public class P3_2 {
 	}
 	
 	
-	public static String solution(String msg) {
+	public static int[] solution(String msg) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		int answer[];
+		int answer_cnt=0;
+		dic = new HashMap<String, Integer>();
+		
+		char alpa = 'A';
+		for(int i=1; i<=26; i++) {
+			dic.put(alpa+"", i);
+			alpa++;
+		}
 		
 		int cnt = 27;
 		char temp[] = msg.toCharArray();
@@ -56,8 +61,9 @@ public class P3_2 {
 						}
 					}
 					//str+=temp[j];
+					list.add(dic.get(pre));
 					
-					System.out.println(dic.get(pre));
+//					System.out.println(dic.get(pre));
 					// 문자열 이미 있으니까 출력하고 
 					if(j==msg.length()) {
 						i=j;
@@ -75,9 +81,12 @@ public class P3_2 {
 			}
 			
 		}
+		answer = new int[list.size()];
+		for(int i=0; i<list.size(); i++) {
+			answer[i] = list.get(i);
+		}
 		
 		
-		
-		return "a";
+		return answer;
 	}
 }
