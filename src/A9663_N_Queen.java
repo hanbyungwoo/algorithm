@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class A9663 {
+public class A9663_N_Queen {
 	static boolean map[][];
 	
 	static boolean check_col[];		// | πÊ«‚
