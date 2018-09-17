@@ -13,7 +13,7 @@ public class P1_6_매칭점수 {
 //	  <meta property="og:url" content="https://a.com"/>
 //	</head>  
 //	<body>
-//	Blind Lorem Blind ipsum dolor Blind test sit amet, consectetur adipiscing elit. 
+//	Blind LoremBlind ipsum dolor Blind test sit amet, consectetur adipiscing elit. 
 //	<a href="https://b.com"> Link to b </a>
 //	</body>
 //	</html>
@@ -43,73 +43,87 @@ public class P1_6_매칭점수 {
 //	</html>
 			
 	public static int solution(String word, String[] pages) {
-        int answer = 0;
-        String url[] = new String[pages.length];
-        ArrayList<String>[] outLinkUrl = (ArrayList<String>[]) new ArrayList[pages.length];
-        
-    	for(int i=0; i<pages.length; i++) {
-    		outLinkUrl[i] = new ArrayList<String>();
-    	}
-        int outLink[] = new int[pages.length];
-        int body[] = new int[pages.length];
-        int total[] = new int[pages.length];
-        
-        for(int i=0; i<pages.length; i++) {
-        	String uu[] = pages[i].split("content=");
-        	uu = uu[1].split("/>");
-        	// 주소
-        	url[i] = uu[0].replaceAll("\"", "");
-        	
-        	// 외부링크 갯수
-        	uu = pages[i].split("<a href=");
-        	outLink[i] = uu.length-1;
-        	
-        	// 외부링크 주소
-        	for(int j=1; j<uu.length; j++) {
-        		String[] out = uu[j].split(">");
-        		
-        		outLinkUrl[i].add(out[0].replaceAll("\"",""));
-        	}
-//        	Blind Lorem Blind ipsum dolor Blind test sit am@et, consectetur adipiscing elit.
-        	// 내용
-        	uu = pages[i].split("<body>");
-        	int cnt=0;
-        	for(int j=1; j<uu.length; j++) {
-        		String[] a;
-        		a = uu[1].split("<a href");
-            	a = a[0].split("\\s");
-            	for(int k=1; k<a.length; k++) {
-            		if(a[k].toUpperCase().equals(word.toUpperCase())) {
-            			cnt++;
-            		}
-            	}
-        	}
-        	body[i] = cnt;
-        	
-        	
-        }
-        double help[] = new double[pages.length];
-        for(int i=0; i<pages.length; i++) {
-        	for(int j=0; j<outLinkUrl[i].size(); j++) {
-        		int temp=0;
-        		for(int k=0; k<pages.length; k++) {
-        			if(url[k].equals(outLinkUrl[i].get(j))) {
-        				help[k] += (double)body[j]/outLink[j];
-        				temp++;
-        			}
-        		}
-        	}
-        }
-        int max=0;
-        for(int i=0; i<pages.length; i++) {
-        	total[i] += body[i] + help[i];
-        	System.out.println(total[i]);
-        	if(max > total[i]) {
-        		answer = i;
-        	}
-        }
-        
-        return answer;
+		int fromIndex=0;
+		int cn8t = 0;
+		while(true) {
+			int index = pages[0].toUpperCase().indexOf("BLIND", fromIndex);
+			if(index == -1) {
+				break;
+			} else {
+				System.out.println(index);
+				cn8t++;
+				fromIndex = index + 1;
+			}
+		}
+		System.out.println("갯수 : "+ cn8t);
+		return 1;
+//        int answer = 0;
+//        String url[] = new String[pages.length];
+//        ArrayList<String>[] outLinkUrl = (ArrayList<String>[]) new ArrayList[pages.length];
+//        
+//    	for(int i=0; i<pages.length; i++) {
+//    		outLinkUrl[i] = new ArrayList<String>();
+//    	}
+//        int outLink[] = new int[pages.length];
+//        int body[] = new int[pages.length];
+//        int total[] = new int[pages.length];
+//        
+//        for(int i=0; i<pages.length; i++) {
+//        	String uu[] = pages[i].split("content=");
+//        	uu = uu[1].split("/>");
+//        	// 주소
+//        	url[i] = uu[0].replaceAll("\"", "");
+//        	
+//        	// 외부링크 갯수
+//        	uu = pages[i].split("<a href=");
+//        	outLink[i] = uu.length-1;
+//        	
+//        	// 외부링크 주소
+//        	for(int j=1; j<uu.length; j++) {
+//        		String[] out = uu[j].split(">");
+//        		
+//        		outLinkUrl[i].add(out[0].replaceAll("\"",""));
+//        	}
+////        	Blind Lorem Blind ipsum dolor Blind test sit am@et, consectetur adipiscing elit.
+//        	// 내용
+//        	uu = pages[i].split("<body>");
+//        	int cnt=0;
+//        	for(int j=1; j<uu.length; j++) {
+//        		String[] a;
+//        		a = uu[1].split("<a href");
+//            	a = a[0].split("\\s");
+//            	for(int k=1; k<a.length; k++) {
+//            		if(a[k].toUpperCase().equals(word.toUpperCase())) {
+//            			cnt++;
+//            		}
+//            	}
+//        	}
+//        	body[i] = cnt;
+//        	
+//        	
+//        }
+//        double help[] = new double[pages.length];
+//        for(int i=0; i<pages.length; i++) {
+//        	for(int j=0; j<outLinkUrl[i].size(); j++) {
+//        		int temp=0;
+//        		for(int k=0; k<pages.length; k++) {
+//        			if(url[k].equals(outLinkUrl[i].get(j))) {
+//        				help[k] += (double)body[j]/outLink[j];
+//        				temp++;
+//        			}
+//        		}
+//        	}
+//        }
+//        int max=0;
+//        for(int i=0; i<pages.length; i++) {
+//        	total[i] += body[i] + help[i];
+//        	System.out.println(total[i]);
+//        	if(max > total[i]) {
+//        		answer = i;
+//        	}
+//        }
+//        
+//        return answer;
     }
 	
 	

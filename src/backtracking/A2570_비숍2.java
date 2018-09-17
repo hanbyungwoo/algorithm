@@ -20,6 +20,7 @@ public class A2570_ºñ¼ó2 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		n = Integer.parseInt(st.nextToken());
+
 		map= new int[n][n];
 		colors = new int[n][n];
 		

@@ -13,7 +13,6 @@ public class A2133 {
 		
 		int num = Integer.parseInt(st.nextToken());
 		int d[] = new int[num+1];
-		
 		d[0] = 1;
 		for(int i=2; i<=num; i+=2) {
 			d[i] = d[i-2]*3;
