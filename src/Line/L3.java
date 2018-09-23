@@ -59,7 +59,7 @@ public class L3 {
 			
 		}
 		
-		System.out.println(cnt++);
+		System.out.println(cnt);
 	}
     
     public static void dfs(int x) {

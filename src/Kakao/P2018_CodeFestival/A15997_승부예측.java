@@ -1,5 +1,5 @@
 package Kakao.P2018_CodeFestival;
- 
+ // 6987 월드컵 참고
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

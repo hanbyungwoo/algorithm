@@ -20,7 +20,8 @@ public class L4 {
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
+		// 테마, 스티커
+		// 5C2 콤비네이션으로 생각해서 풀었음.
 		int t = Integer.parseInt(st.nextToken());
 		while(t-->0) {
 			st = new StringTokenizer(br.readLine(), " ");
