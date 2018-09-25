@@ -1,8 +1,7 @@
 package Kakao.P2018;
 
-import java.awt.Point;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 
 public class P1_4_무지의먹방라이브 {
 	public static void main(String args[]) {
@@ -13,81 +12,51 @@ public class P1_4_무지의먹방라이브 {
 	
 	
 	public static int solution(int[] food_times, long k) {
-        int answer = 0;
-        
-        int size = food_times.length;
-        int min = Integer.MAX_VALUE;
-        for(int i=0; i<size; i++) {
-        	min = Math.min(min, food_times[i]);
+		List<Food> foods = new LinkedList<>();
+        int nFoods = food_times.length;
+        for (int i = 0; i < nFoods; i++) {
+            foods.add(new Food(i + 1, food_times[i]));
         }
-        Queue<Point> q = new LinkedList<Point>();
-        
-        int val = (int)(k/size);
-        
-        if(val < min && val > 0) {
-    		min = val;
-    	}
-        val = val-min;
-        
-        int tempNum=Integer.MAX_VALUE;
-        long k_cnt=0;
-        k_cnt = size*min;
-        for(int i=0; i<size; i++) {
-        	int insert = food_times[i]-min;
-        	if(insert > 0) {
-	       		q.add(new Point(i+1,insert));
-	       		tempNum = Math.min(tempNum, food_times[i]-min);
-        	}
-        }
-        min = tempNum;
-        
-        	
-        
-        while(!q.isEmpty() && k_cnt < k) {
-        	int q_size = q.size();
-        	tempNum = Integer.MAX_VALUE;
-        	if(val < min && val > 0) {
-        		min = val;
-//        		k = k - size*min;
-        	} 
-            val = val-min;
-            
-            if(q_size == 1) {
-            	int x = (int) (q.peek().y-(k-k_cnt));
-            	if( x <= 0 ) {
-            		q.poll();
-            	}
-            	break;
+
+        long remainingTime = k;
+        while (!foods.isEmpty()) {
+            int nRemainingFoods = foods.size();
+            int eachTimes = (int) (remainingTime / nRemainingFoods);
+            remainingTime = remainingTime % nRemainingFoods;
+            if (eachTimes == 0) {
+//            	System.out.println(foods.get((int) remainingTime).id);
+                return foods.get((int) remainingTime).id;
             }
-            
-        	for(int i=0; i<q_size; i++) {
-	        	int seq = q.peek().x;
-	        	int time = q.peek().y;
-	        	q.poll();
-	        	
-	        	time -= min;
-	        	if(time != 0) {
-	        		q.add(new Point(seq, time));
-	        		tempNum = Math.min(tempNum, time);
-	        	}
-	        	k_cnt+=min;
-	        	if( k_cnt >= k ) {
-	        		break;
-	        	}
-        	}
+
+            long overflow = eatEach(foods, eachTimes);
+            remainingTime += overflow;
         }
-        
-        if(q.isEmpty()) {
-        	answer = -1;
-        } else {
-        	answer = q.peek().x;
-        }
-        System.out.println(answer);
-        
-        return answer;
+//        System.out.println(-1);
+        return -1;
     }
 	
-	
-	
+	// 일단 몫만큼 다 빼주고 그 때 기존의 숫자보다 -가 된다면 삭제해주고 그 -된 수치를 다시 더해줌..
+	private static long eatEach(List<Food> foods, int t) {
+        long overflow = 0;
+        for (Food f : foods) {
+            f.remainingTime -= t;
+            if (f.remainingTime < 0) {
+                overflow += -f.remainingTime;
+            }
+        }
+        foods.removeIf(f -> f.remainingTime <= 0);
+        return overflow;
+    }
+
+}
+
+class Food {
+    public int id;
+    public int remainingTime;
+
+    public Food (int id_, int t) {
+        id = id_;
+        remainingTime = t;
+    }
 }
 

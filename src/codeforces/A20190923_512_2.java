@@ -23,6 +23,7 @@ public class A20190923_512_2 {
 			st = new StringTokenizer(br.readLine(), " ");
 			int x = Integer.parseInt(st.nextToken());
 			int y = Integer.parseInt(st.nextToken());
+			// 4점에 대하여 각각의 기울기 4개 안에 포함되도록 한 것임.
 			if(x+y<d || x+y>n*2-d) {
 				System.out.println("NO");
 				continue;
