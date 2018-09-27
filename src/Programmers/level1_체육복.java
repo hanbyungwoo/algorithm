@@ -1,7 +1,5 @@
 package Programmers;
 
-import java.awt.Point;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class level1_Ã¼À°º¹ {
@@ -16,8 +14,6 @@ public class level1_Ã¼À°º¹ {
 		int answer = 0;
 		
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-//		ArrayList<Point> list = new ArrayList<Point>();
-//		list.add(new Point())
 		for(int i=1; i<=n; i++) {
 			map.put(i, 1);
 		}
