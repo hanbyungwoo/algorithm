@@ -1,4 +1,4 @@
-package Line;
+package Line.P2018_second;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
