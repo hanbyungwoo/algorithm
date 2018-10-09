@@ -1,6 +1,5 @@
-package bfs;
+package Samsung;
 
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class A2206 {
+public class A14442_벽부수고이동하기2 {
 	static int dx[] = {-1,1,0,0};
 	static int dy[] = {0,0,1,-1};
 	
@@ -18,9 +17,10 @@ public class A2206 {
 		
 		int N = Integer.parseInt(st.nextToken());	// 세로 6
 		int M = Integer.parseInt(st.nextToken());	// 가로 4
+		int K = Integer.parseInt(st.nextToken());	// 폭탄수
 		
 		int map[][] = new int [N+1][M+1];
-		boolean visited[][] = new boolean [N*M+1][2];
+		boolean visited[][] = new boolean [N*M+1][K+1];
 		
 		for(int i=1; i<=N; i++) {
 			char temp[] = br.readLine().toString().toCharArray();
@@ -56,7 +56,7 @@ public class A2206 {
 							visited[(tempX-1)*M+tempY][z] = true;
 						}
 					}
-					if(z==0) {
+					if(z<K) {
 						// 폭탄 터트린 경우
 						if(tempX > 0 && tempY > 0 && tempX <= N && tempY <= M) {
 							if(visited[(tempX-1)*M+tempY][z] == false) {

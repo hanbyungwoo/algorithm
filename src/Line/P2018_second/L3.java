@@ -1,73 +1,69 @@
 package Line.P2018_second;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.StringTokenizer;
 
-// 입력 예제
-//6
-//1 3
-//3 4
-//6 5
-//11 15
-//12 17
-//12 15
-
-// 아웃풋
-//3
 public class L3 {
-	static boolean check[];
-	static ArrayList<ArrayList<Integer>> list;
-    public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		// 공간복잡도 O(n)
-		// 시간복잡도 O(n*n)
 		
 		int n = Integer.parseInt(st.nextToken());
-		check = new boolean[100001];
-		list = new ArrayList<>();
-		for(int i=0; i<100001; i++) {
-			list.add(new ArrayList<>());
+		List<Integer>[] list = (List<Integer>[]) new List[n+1];
+		for(int i=0; i<=n; i++) {
+			list[i] = new ArrayList<Integer>();
 		}
 		
-		ArrayList<Integer> number = new ArrayList<Integer>();
+		Set<Integer> set = new HashSet<Integer>();
 		
+		int ind[] = new int[1000];
 		for(int i=0; i<n; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
-			int one = Integer.parseInt(st.nextToken());
-			int two = Integer.parseInt(st.nextToken());
-			list.get(one).add(two);
-			list.get(two).add(one);
-			if(!number.contains(one)) {
-				number.add(one);
-			}
-			if(!number.contains(two)) {
-				number.add(two);
+			boolean check = false;
+			while(st.hasMoreElements()) {
+				int x = Integer.parseInt(st.nextToken());
+				list[i].add(x);
+				set.add(x);
+				if(check) {
+					ind[x] += 1;	
+				}
+				check = true;
 			}
 		}
 		
-		Collections.sort(number);
-		int cnt=0;
-		for(int i : number) {
-			if(check[i]==false) {
-				dfs(i);
-				cnt++;
-			}
-			
-		}
+		PriorityQueue<Integer> q = new PriorityQueue<Integer>();
 		
-		System.out.println(cnt);
-	}
-    
-    public static void dfs(int x) {
-    	check[x] = true;
-    	for(int y : list.get(x)) {
-    		if(check[y]==false) {
-    			dfs(y);
-    		}
-    	}
-    }
+//		for(int i=1; i<=set.size(); i++) {
+			for(int i : set) {
+				if(ind[i] == 0) {
+					q.offer(i);
+//					q.add(i);
+				}				
+			}
+//		}
+		
+		for(int i=1; i<=set.size(); i++) {
+//			int x = q.remove();
+			int x = q.poll();
+//			System.out.print(x+" ");
+			for(int y : list[x]) {
+				ind[y] -= 1;
+				if(ind[y] == 0) {
+//					q.add(y);
+					q.offer(y);
+				}
+			}
+		}
+		while(!q.isEmpty()) {
+			System.out.print(q.poll()+" ");
+		}
+		System.out.println();
+	}	
 }
