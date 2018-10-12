@@ -7,7 +7,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class A13460_±∏ΩΩ≈ª√‚2 {
+import Samsung.A13460_±∏ΩΩ≈ª√‚2.Ball;
+
+public class A13459_±∏ΩΩ≈ª√‚ {
 	static int dx[] = {-1, 1, 0, 0};
 	static int dy[] = {0, 0, 1, -1};
 	
@@ -81,7 +83,8 @@ public class A13460_±∏ΩΩ≈ª√‚2 {
 				if(map[nbx][nby]=='O') continue;
 				// ª°∞≠¿Ã µÈæÓ∞¨¿Ω..
 				if(map[nrx][nry]=='O') {
-					System.out.println(cnt+1);
+					System.out.println(1);
+//					System.out.println(cnt+1);
 					return;
 				}
 				if(check[nrx][nry][nbx][nby]==1) continue;
@@ -93,31 +96,10 @@ public class A13460_±∏ΩΩ≈ª√‚2 {
 			}
 		}
 		
-		System.out.println(-1);
+		System.out.println(0);
 		
 	}
-	
-	public static class Ball {
-		int cnt;
-		int rx;
-		int ry;
-		int bx;
-		int by;
-		public Ball(int cnt, int rx, int ry, int bx, int by) {
-			this.cnt = cnt;
-			this.rx = rx;
-			this.ry = ry;
-			this.bx = bx;
-			this.by = by;
-		}
-	}
 }
-
-
-
-
-
-
 
 
 

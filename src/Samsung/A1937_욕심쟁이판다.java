@@ -43,7 +43,7 @@ public class A1937_¿å½ÉÀïÀÌÆÇ´Ù {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
 			if(nx >= 0 && ny >= 0 && nx < n && ny < n) { 
-				if(map[nx][ny] < map[x][y]) {
+				if(map[nx][ny] > map[x][y]) {
 					max = Math.max(max, dfs(nx, ny));
 				}
 			}	
