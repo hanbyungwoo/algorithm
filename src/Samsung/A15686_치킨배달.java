@@ -51,9 +51,10 @@ public class A15686_치킨배달 {
 	public static void dfs(int index, int depth) {
 		if(depth == m) {
 			int value = 0;
-			// 확인 필요
+			// 확인 필요 
 			for(int i=0; i<home.size(); i++) {
 				int temp=Integer.MAX_VALUE;
+				// list가 치킨집
 				for(int j=0; j<list.size(); j++) {
 					// visit[i] 의 값이 true인 것들에 대해 각각의 치킨 집들의 최소 거리를 구해야함.
 					if(visit[j]) {
