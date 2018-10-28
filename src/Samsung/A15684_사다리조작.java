@@ -34,7 +34,7 @@ public class A15684_사다리조작 {
 		
 		// 총 3개 선을 MAX로 그을 수 있기 떄문에 3번만 돈다.
 		for(int i=0; i<4; i++) {
-			dfs(0, i);
+			dfs(0, i);	// 앞에가 사다리 갯수 / 그 시도 때 최대갯수
 			if(result != -1) {
 				break;
 			}
@@ -47,6 +47,7 @@ public class A15684_사다리조작 {
 			return;
 		}
 		// 그을 수 있는 선을 다 그은 경우
+		// 사다리 cnt개 긋기전까지는 확인안함.
 		if(cnt >= total) {
 			for(int i=1; i<=N; i++) {	// 사다리 확인
 				int tmp = i;
@@ -75,7 +76,7 @@ public class A15684_사다리조작 {
 					return;
 				}
 			}
-			result = total;
+			result = cnt;
 			return;
 		}
 		

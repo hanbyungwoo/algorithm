@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class SW2112_보호필름 {
 	static int map[][], copymap[][];
-	static boolean isCheck[], temp[];
+	static boolean temp[];
 	static int d, w, k, ans;
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,7 +30,6 @@ public class SW2112_보호필름 {
 					map[i][j] = Integer.parseInt(st.nextToken());
 				}
 			}
-			isCheck = new boolean[d];
 			
 			ans = Integer.MAX_VALUE;
 			if(!check()) {

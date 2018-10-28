@@ -3,8 +3,6 @@ package Samsung;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class A3190_뱀 {
@@ -46,6 +44,7 @@ public class A3190_뱀 {
 			// 시간, 방향 정보 저장
 			info[i] = new Arrow(x, y[0]);
 		}
+		// 방향정보 끝나고 살아있으면 끝까지 가서 게임 끝나게 만들려고 생성해둠.
 		info[L] = new Arrow(100, 'X');
 		
 		int headRow = 1, headCol = 1;

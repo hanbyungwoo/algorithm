@@ -10,7 +10,7 @@ public class A9663_N_Queen {
 	static boolean check_dig1[];	// / 대각선
 	static boolean check_dig2[];	// \ 대각선
 	
-	static int n;
+	static int n, max;
 	
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,12 +21,16 @@ public class A9663_N_Queen {
 		check_col = new boolean[n];		// | 방향
 		check_dig1 = new boolean[2*n];	// / 대각선
 		check_dig2 = new boolean[2*n];	// \ 대각선
-		
+//		calc(0);
 		System.out.println(calc(0));
+//		System.out.println(max);
 	}
 	
 	public static int calc(int row) {
 		if(row == n) {
+			// 다 더하는거네..!
+//			max++;
+//			return;
 			return 1;
 		}
 		
@@ -38,6 +42,7 @@ public class A9663_N_Queen {
 				check_dig2[row-col+n] = true;
 				map[row][col] = true;
 				cnt += calc(row+1);
+//				calc(row+1);
 				check_col[col] = false;
 				check_dig1[row+col] = false;
 				check_dig2[row-col+n] = false;

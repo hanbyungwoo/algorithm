@@ -1,102 +1,99 @@
 package Samsung;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
-
+import java.util.Scanner;
+// 시간초과...
 public class SW4317_칩생산LLLL {
 	static int h, w, max;
-	static char mm[][][];
 	static int map[][];
-	public static void main(String args[]) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+	static boolean visited[][];
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st = new StringTokenizer(br.readLine());
 		
 		int ca=1;
-		int t = Integer.parseInt(st.nextToken());
+//		int t = Integer.parseInt(st.nextToken());
+		int t = sc.nextInt();
 		while(t-- > 0) {
-			st = new StringTokenizer(br.readLine(), " ");
-			h = Integer.parseInt(st.nextToken());
-			w = Integer.parseInt(st.nextToken());
-			map = new int[26][10];
-			mm = new char[26][ 1<<10 ][ 1<<10 ];
+//			st = new StringTokenizer(br.readLine(), " ");
+//			h = Integer.parseInt(st.nextToken());
+//			w = Integer.parseInt(st.nextToken());
+			h = sc.nextInt();
+			w = sc.nextInt();
+			map = new int[h][w];
+			visited = new boolean[h][w];
 			
-			for(int i=0; i<w; i++) {
-				st = new StringTokenizer(br.readLine(), " ");
-				for(int j=1; j<=h; j++) {
-					map[j][i] = Integer.parseInt(st.nextToken());
+			for(int i=0; i<h; i++) {
+//				st = new StringTokenizer(br.readLine(), " ");
+				for(int j=0; j<w; j++) {
+//					map[i][j] = Integer.parseInt(st.nextToken());
+					map[i][j] = sc.nextInt();
 				}
 			}
 			
-			System.out.println("#"+ca+" "+so(1));
-			in(1);
+			max = 0;
+			
+			for(int i=0; i<h*w; i++) {
+				int x = i/w;
+				int y = i%w;
+				if(x >= 0 && x+1 < h && y >= 0 && y+1 < w) {
+					if(map[x][y]==0 && map[x+1][y+1]==0 && 
+							map[x+1][y]==0 && map[x][y+1]==0) {
+						if(!visited[x][y]&&!visited[x+1][y]&&!visited[x][y+1]&&!visited[x+1][y+1]) {
+							visited[x][y] = visited[x+1][y] = visited[x][y+1] = visited[x+1][y+1] = true;
+							dfs(i);
+							visited[x][y] = visited[x+1][y] = visited[x][y+1] = visited[x+1][y+1] = false;
+						}
+						 
+								
+					}
+				}
+			}
+			
+			System.out.println("#"+ca+" "+max);
+			
 			ca++;
 		}
 	}
 	
-	public static int ma(int a, int b){return a>b?a:b;}
-	 
-	public static int cc(int x){
-	    int cn = 0;
-	    for(int i=0; i<w;i++){
-	        cn = (cn << 1);
-	        if(map[x][i]==2)
-	            cn++;
-	    }
-	    return cn;
+	public static void dfs(int index) {
+		if(index == h*w) {
+			int ans=0;
+			for(int i=0; i<h; i++) {
+				for(int j=0; j<w; j++) {
+					if(visited[i][j]) {
+						ans++;
+					}
+				}
+			}
+			max = Math.max(max, ans/4);
+			return;
+		}
+		for(int i=index+1; i<h*w; i++) {
+			int x = i/w;
+			int y = i%w;
+			if(x >= 0 && x+1 < h && y >= 0 && y+1 < w) {
+				if(map[x][y]==0 && map[x+1][y+1]==0 && 
+						map[x+1][y]==0 && map[x][y+1]==0) {
+					if(!visited[x][y]&&!visited[x+1][y]&&!visited[x][y+1]&&!visited[x+1][y+1]) {
+						visited[x][y] = visited[x+1][y] = visited[x][y+1] = visited[x+1][y+1] = true;
+						i++;
+						dfs(i);
+						i--;
+						visited[x][y] = visited[x+1][y] = visited[x][y+1] = visited[x+1][y+1] = false;
+					}
+					 
+							
+				}
+			}
+			if(i==h*w-1) {
+				dfs(i+1);
+			}
+		}
 	}
-	 
 	
-	public static int so(int x){
-	    if(x==h)
-	        return 0;
-	    int cn = cc(x);
-	    int cn1 = cc(x-1);
-	    if(mm[x-1][cn][cn1] == 0){
-	        mm[x-1][cn][cn1] = (char)so2(x,0);
-	    }
-	    return mm[x-1][cn][cn1];
-	}
-	 
-	public static int so2(int x, int y){
-	    int temap = 0;
-	    for(int i = y; i< w-1; i++){
-	        if(map[x][i] == 0 && map[x+1][i] == 0 && map[x][i+1] ==0 && map[x+1][i+1] == 0){
-	            map[x][i] = 2;
-	            map[x+1][i] = map[x][i+1] = map[x+1][i+1] = 1;
-	            temap = ma(temap,so2(x,i)+1);
-	            map[x][i] = map[x+1][i] = map[x][i+1] = map[x+1][i+1] = 0;
-	        }
-	    }
-	    temap = ma(temap,so(x+1));
-	    return temap;
-	}
-	 
 	
-	public static void in(int x){
-	    if(x==h)
-	        return;
-	    int cn = cc(x);
-	    int cn1 = cc(x-1);
-	    if(mm[x-1][cn][cn1] != 0){
-	        mm[x-1][cn][cn1] = 0;
-	        in2(x,0);
-	    }
-	}
-	 
-	public static void in2(int x, int y){
-	    for(int i = y; i< w-1; i++){
-	        if(map[x][i] == 0 && map[x+1][i] == 0 && map[x][i+1] ==0 && map[x+1][i+1] == 0){
-	            map[x][i] = 2;
-	            map[x+1][i] = map[x][i+1] = map[x+1][i+1] = 1;
-	            in2(x,i);
-	            map[x][i] = map[x+1][i] = map[x][i+1] = map[x+1][i+1] = 0;
-	        }
-	    }
-	    in(x+1);
-	}
 	
 }
 

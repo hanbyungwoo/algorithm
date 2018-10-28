@@ -1,13 +1,14 @@
 package Samsung;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class A13911_집구하기 {
     static final int inf = 1000000000;
     static int n;
     static int a[][];
     public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         a = new int[n+1][n+1];
         for (int i=1; i<=n; i++) {

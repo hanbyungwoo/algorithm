@@ -54,7 +54,7 @@ public class A12100_2048EASY {
 			dfs(index+1);
 			
 		}
-		copy(map, copymap);
+//		copy(map, copymap);
 		
 	}
 	public static void copy(int [][] map1, int [][] map2) {

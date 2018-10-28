@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.StringTokenizer;
 
 public class A11559_PuyoPuyo {
 	static int dx[] = {-1,1,0,0};
@@ -18,7 +17,6 @@ public class A11559_PuyoPuyo {
 	static boolean isBreak;
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
 		
 		for(int i=0; i<12; i++) {
 			String temp = br.readLine().toString();
@@ -107,24 +105,5 @@ public class A11559_PuyoPuyo {
 		System.out.println(ans);
 	}
 	
-	public static void dfs(int x, int y, int depth, ArrayList<Point> list) {
-		visited[x][y] = true;
-		if(depth>=4) {
-			isBreak = true;
-			// 터지는 블록 체크
-			for(int i=0; i<list.size(); i++) {
-				cnt[list.get(i).x][list.get(i).y] += 100;
-			}
-		}
-		for(int i=0; i<4; i++) {
-			int nx = x+dx[i];
-			int ny = y+dy[i];
-			if(nx >= 0 && ny >= 0 && nx < 12 && ny < 6) {
-				if(!visited[nx][ny] && map[nx][ny] != 0 && map[x][y] == map[nx][ny]) {
-					list.add(new Point(nx, ny));
-					dfs(nx, ny, depth+1, list);
-				}
-			}
-		}
-	}
+	
 }

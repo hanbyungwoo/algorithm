@@ -59,8 +59,8 @@ public class A2931_가스관 {
 		if(map[x][y]=='.') return;
 		
 		for(int i=0; i<4; i++) {
-			if(checkDir(x, y, i)) {
-				dfs(x+dx[i], y+dy[i], i);
+			if(checkDir(x, y, i)) {	// 나가는 번호
+				dfs(x+dx[i], y+dy[i], i);	// 들어가는 번호
 			}
 		}
 	}

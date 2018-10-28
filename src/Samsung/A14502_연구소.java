@@ -3,13 +3,11 @@ package Samsung;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class A14502_楷备家 {
 	static int N, M;
 	static int max;
-	static boolean visit[][];
 	static int map[][], copymap[][], tempmap[][];
 	static int dx[] = {-1,1,0,0};
 	static int dy[] = {0,0,-1,1};
@@ -61,7 +59,6 @@ public class A14502_楷备家 {
 				}
 			}
 			check();
-			
 		} else {
 			for(int i=val+1; i<N*M; i++) {
 				int x = i/M;
@@ -77,7 +74,7 @@ public class A14502_楷备家 {
 		}
 		// 捞巴档..しし
 //		tempmap[val/M][val%M]=0;
-		cnt--;
+//		cnt--;
 	}
 	
 	public static void expand(int row, int col) {

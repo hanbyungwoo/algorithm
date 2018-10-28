@@ -28,7 +28,8 @@ public class SW1953_탈주범검거 {
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
+		// visited 배열은 빽트레킹을 하고
+		// ret 배열은 지난 간 경로를 다 표시하고
 		int ca=1;
 		int t = Integer.parseInt(st.nextToken());
 		while(t-- > 0) {
