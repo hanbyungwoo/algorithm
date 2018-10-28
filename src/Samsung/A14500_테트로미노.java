@@ -34,7 +34,7 @@ public class A14500_테트로미노 {
 		
 		for(int i=1; i<=N; i++) {
 			for(int j=1; j<=M; j++) {
-				dfs(i,j,1,0);
+				dfs(i,j,1,map[i][j]);
 				solve(i,j);
 			}
 		}
@@ -44,7 +44,7 @@ public class A14500_테트로미노 {
 	
 	public static void dfs(int row, int col, int depth, int cnt) {
 		if(depth == 4) {
-			cnt += map[row][col];
+//			cnt += map[row][col];
 			max = cnt > max ? cnt : max;
 			return;
 		}
@@ -54,7 +54,7 @@ public class A14500_테트로미노 {
 			int ny = col + dy[i];
 			if(nx > 0 && ny > 0 && nx <= N && ny <= M) {
 				if(visit[nx][ny] == false) {
-					dfs(nx, ny, depth+1, cnt+map[row][col]);
+					dfs(nx, ny, depth+1, cnt+map[nx][ny]);
 				}
 			}
 		}

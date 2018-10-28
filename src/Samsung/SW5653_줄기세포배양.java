@@ -3,11 +3,10 @@ package Samsung;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
+//http://organize-study.tistory.com/166
 public class SW5653_줄기세포배양 {
 	static final int range = 200;
 	static int n, m, k;

@@ -19,8 +19,6 @@ public class A2146 {
 		
 		int map[][] = new int [num+1][num+1];
 		int group[][] = new int [num+1][num+1];
-		boolean mapCheck[][] = new boolean[num+1][num+1];
-		int check[][] = new int [num+1][num+1];
 		Queue<Point> q = new LinkedList<Point>();
 		
 		// ¸Ê ÀúÀå

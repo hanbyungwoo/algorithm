@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class SW2382_미생물격리 {
@@ -76,12 +75,13 @@ public class SW2382_미생물격리 {
 					}
 				}
 				
-				for(int j=0; j<list.size(); j++) {
-					if(list.get(j).cnt == 0) {
-						list.remove(j);
-						j--;
-					}
-				}
+ 				list.removeIf(f->f.cnt == 0);
+//				for(int j=0; j<list.size(); j++) {
+//					if(list.get(j).cnt == 0) {
+//						list.remove(j);
+//						j--;
+//					}
+//				}
 			}
 			int sum=0;
 			for(int i=0; i<list.size(); i++) {
